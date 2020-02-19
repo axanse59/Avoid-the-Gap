@@ -17,18 +17,33 @@ bg = pyglet.sprite.Sprite(smol_he, 0, 0)
 bg.scale = 3
 #two = pyglet.sprite.Sprite(smol_the, x = 200, y = 200)
 keys = pyglet.window.key.KeyStateHandler()
+hit = False
 
 def update(dt):
+  global hit
   win.push_handlers(keys)
-  if keys[pyglet.window.key.LEFT]:
-    spr.x -= 1
-  if keys[pyglet.window.key.RIGHT]:
+  print(str(hit))
+  if spr.x >= 600:
+    hit = True
 
-    spr.x += 1
-  if keys[pyglet.window.key.DOWN]:
-    spr.y -= 1
-  if keys[pyglet.window.key.UP]:
-    spr.y += 1
+  if spr.x <= 0:
+    hit = False
+  
+  if keys[pyglet.window.key.SPACE]:
+    if hit:
+      spr.x -= 1
+    else:
+      spr.x += 1
+
+  # if keys[pyglet.window.key.LEFT]:
+  #   spr.x -= 1
+  # if keys[pyglet.window.key.RIGHT]:
+
+  #   spr.x += 1
+  # if keys[pyglet.window.key.DOWN]:
+  #   spr.y -= 1
+  # if keys[pyglet.window.key.UP]:
+  #   spr.y += 1
 
 # Start the event loop
 @win.event
@@ -62,8 +77,5 @@ def on_draw():
   spr.draw()
   
   #two.draw()
-
-
-
 pyglet.clock.schedule(update) 
 pyglet.app.run()
