@@ -1,11 +1,10 @@
 import pyglet # import the library
 import util
 win= pyglet.window.Window() # create the window
-
 # Create a sprite
 img= pyglet.image.load('characters.png')
 smol_img = img.get_region(x=0, y=0, width=25, height=16)
-spr= pyglet.sprite.Sprite(smol_img, x = 200, y = 200)
+spr= pyglet.sprite.Sprite(smol_img, x = 200, y = 300)
 
 the= pyglet.image.load('sheet.png')
 smol_the = the.get_region(x=128, y=96, width=32, height=16)
@@ -19,6 +18,7 @@ bg.scale = 3
 keys = pyglet.window.key.KeyStateHandler()
 hit = False
 
+
 def update(dt):
   global hit
   win.push_handlers(keys)
@@ -31,9 +31,11 @@ def update(dt):
   
   if keys[pyglet.window.key.SPACE]:
     if hit:
-      spr.x -= 1
+      spr.x -= 8
     else:
-      spr.x += 1
+      spr.x += 8
+
+
 
   # if keys[pyglet.window.key.LEFT]:
   #   spr.x -= 1
@@ -75,7 +77,7 @@ def on_draw():
   smol_the.blit(672,150)
   smol_the.blit(704,150)
   spr.draw()
-  
+
   #two.draw()
 pyglet.clock.schedule(update) 
 pyglet.app.run()
