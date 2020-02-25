@@ -1,5 +1,7 @@
 import pyglet # import the library
 import util
+import random
+
 win= pyglet.window.Window() # create the window
 # Create a sprite
 img= pyglet.image.load('characters.png')
@@ -8,7 +10,7 @@ spr= pyglet.sprite.Sprite(smol_img, x = 200, y = 300)
 
 the= pyglet.image.load('sheet.png')
 smol_the = the.get_region(x=128, y=96, width=32, height=16)
-#two = pyglet.sprite.Sprite(smol_the, x = 200, y = 200)
+two = pyglet.sprite.Sprite(smol_the, x = 200, y = 200)
 
 he= pyglet.image.load('parallax-mountain-bg.png')
 smol_he = he.get_region(x=0, y=0, width=270, height=160)
@@ -22,9 +24,10 @@ hit = False
 def update(dt):
   global hit
   win.push_handlers(keys)
-  print(str(hit))
+  print(str(hit))   
   if spr.x >= 600:
     hit = True
+    move = True
 
   if spr.x <= 0:
     hit = False
@@ -35,7 +38,10 @@ def update(dt):
     else:
       spr.x += 8
 
-
+  two.y += 4
+  if two.y > 480:
+    two.y = 0
+    two.x = random.randint(0,800)
 
   # if keys[pyglet.window.key.LEFT]:
   #   spr.x -= 1
@@ -76,6 +82,8 @@ def on_draw():
   smol_the.blit(640,150)
   smol_the.blit(672,150)
   smol_the.blit(704,150)
+
+  two.draw()
   spr.draw()
 
   #two.draw()
