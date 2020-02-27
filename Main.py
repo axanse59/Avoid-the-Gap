@@ -8,7 +8,9 @@ img= pyglet.image.load('characters.png')
 smol_img = img.get_region(x=0, y=0, width=25, height=16)
 spr= pyglet.sprite.Sprite(smol_img, x = 200, y = 300)
 
-
+tt= pyglet.image.load('sheet.png')
+smol_tt = tt.get_region(x=128, y=96, width=32, height=16)
+the = pyglet.sprite.Sprite(smol_tt, x = 0, y = 300)
 
 he= pyglet.image.load('parallax-mountain-bg.png')
 smol_he = he.get_region(x=0, y=0, width=270, height=160)
@@ -44,6 +46,12 @@ def update(dt):
   if spr.x <= 0:
     hit = False
   
+  
+
+  for b in blocks:
+    if spr.x < b.x + 32 and spr.x > b.x and spr.y < b.y + 16 and spr.y > b.x:
+      print("Hey")
+
   if keys[pyglet.window.key.SPACE]:
     if hit:
       spr.x -= 8
@@ -78,7 +86,8 @@ def on_draw():
   win.clear()
   bg.draw()
   spr.draw()
-  # smol_the.blit(0,150)
+  the.draw()
+  #smol_the.blit(0,150)
   # smol_the.blit(32,150)
   # smol_the.blit(64,150)
   # smol_the.blit(96,150)
@@ -102,7 +111,7 @@ def on_draw():
   # smol_the.blit(704,150)
   for b in blocks:
     b.draw()
-
+  
   #two.draw()
   spr.draw()
 
