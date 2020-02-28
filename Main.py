@@ -7,7 +7,7 @@ win= pyglet.window.Window() # create the window
 img= pyglet.image.load('characters.png')
 smol_img = img.get_region(x=0, y=0, width=25, height=16)
 spr= pyglet.sprite.Sprite(smol_img, x = 200, y = 300)
-spr.HP = 1
+#spr.HP = 1
 
 tt= pyglet.image.load('sheet.png')
 smol_tt = tt.get_region(x=128, y=96, width=32, height=16)
@@ -20,6 +20,7 @@ bg.scale = 3
 #two = pyglet.sprite.Sprite(smol_the, x = 200, y = 200)
 keys = pyglet.window.key.KeyStateHandler()
 hit = False
+
 
 
 
@@ -50,19 +51,19 @@ def update(dt):
     hit = False
   
   
-  if pygame.sprite.spritecollideany(player,opponent):
-   spr.kill()
+  #if pygame.sprite.spritecollideany(player,opponent):
+   #spr.kill()
 
-  if pygame.sprite.spritecollideany(player,opponent):
-   spr.HP -1
-   if spr.HP == 0:
-      spr.kill
+  #if pygame.sprite.spritecollideany(player,opponent):
+   #spr.HP -1
+   #if spr.HP == 0:
+    #  spr.kill
 
   for b in blocks:
     if spr.x < b.x + 32 and spr.x > b.x and spr.y < b.y + 16 and spr.y > b.y:
-      print("Good")
+      print("Good Job")
     if b.x + 32 > spr.x and b.y + 16 > spr.x and spr.y > b.x and spr.y + 16 > b.y:
-      print ("Good Job")
+      print("Hey")
 
   if keys[pyglet.window.key.SPACE]:
     if hit:
